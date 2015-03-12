@@ -23,4 +23,5 @@ I also played a few games to be able to gauge how effective the motion control w
 ![](https://raw.githubusercontent.com/SKrupa/E190u-Lab6/master/Screenshot%20from%202015-03-10%2022_32_31.png)
 ![](https://raw.githubusercontent.com/SKrupa/E190u-Lab6/master/Screenshot%20from%202015-03-10%2022_32_43.png)
 ![](https://raw.githubusercontent.com/SKrupa/E190u-Lab6/master/Screenshot%20from%202015-03-10%2022_32_58.png)
+In the above pictures there are 4 windows, the top left is stdout for the C++ program, the bottom left is stdout for the python, the top right is the game of pong as controlled by the hand in the bottom right. We can see that the outputs of both programs match, thus the correct data is being sent. We also see that the position of the paddle matches the position of the hand in the camera's view.
 ##Conclusion
