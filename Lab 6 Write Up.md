@@ -17,11 +17,19 @@ The first thing I tested were the position values output by the C++ program. I f
 
 Next I tested the socket to make sure it was sending data correctly. I was trying to send a char of data but I could only get the socket to successfully send an int. This would normally not be a problem, but it was sending the char as the most significant 8 bits, this resulted in a number that looked like garbage initially, but actually contained the correct data. I simply bitshifted the value right by 24 and the output value worked.
 
-I also played a few games to be able to gauge how effective the motion control was to play the game.
+I also played a few games to be able to gauge how effective the motion control was to play the game. I quickly found that the paddle jittered a lot because I was not keeping my hand perfectly still. I added a speed threshold to move the paddle of 3 movement units, this eliminated all of the jitter while still making it easy to move the paddle intentionally.
 
 ##Results and Discussion
 ![](https://raw.githubusercontent.com/SKrupa/E190u-Lab6/master/Screenshot%20from%202015-03-10%2022_32_31.png)
 ![](https://raw.githubusercontent.com/SKrupa/E190u-Lab6/master/Screenshot%20from%202015-03-10%2022_32_43.png)
 ![](https://raw.githubusercontent.com/SKrupa/E190u-Lab6/master/Screenshot%20from%202015-03-10%2022_32_58.png)
 In the above pictures there are 4 windows, the top left is stdout for the C++ program, the bottom left is stdout for the python, the top right is the game of pong as controlled by the hand in the bottom right. We can see that the outputs of both programs match, thus the correct data is being sent. We also see that the position of the paddle matches the position of the hand in the camera's view.
+
+The program worked, and it was pretty cool how easy it was to control, but the game was definitely harder with the motion controls. The lag between moving your hand and the paddle moving was small, but still very noticable. This made playing the game to win actually really hard because going to a location was easy, but adjusting on the fly if you miscalculated near impossible. What ended up happening was I would sometimes overshoot a location, thus I'd pull back, but since the location of the paddle was slightly delayed, I'd overshoot on the way back. Thus nearly every movement featured some kind of oscilation towards the location rather than a single precise movement.
+
+The frame drops as encountered in Lab 5 were also very problematic. There would be occassions where the paddle would slow down and then speed up for a split second. This was impossible to prepare, thus severly detracting from gameplay.
+
 ##Conclusion
+Overall, I would describe the montion controls as "functional". They work, and do exactly what you would expect them to do, but in the end motion controls are not a very good imput method for controlling games. The latency between input and output is magnified by the need to do large gestures rather than quick button presses and there is really very little added to the experience. I will say, however, that it was really cool to play around with and see the program track my hand movements consistently, so I could see this control scheme applied to something less competitive and more casual. In that context it could enhance the experience rather than hinder it.
+
+I spent about 2 hours interfacing the C++ program with the Python program since I had to look up a few tutorials about sockets. I then spent about 30 minutes modifying Pong.
